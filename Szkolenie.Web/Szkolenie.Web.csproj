@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Szkolenie.Api\Szkolenie.Api.csproj" />
+    <ProjectReference Include="..\Szkolenie.Implementacja\Szkolenie.Implementacja.csproj" />
+  </ItemGroup>
+
+
+</Project>
