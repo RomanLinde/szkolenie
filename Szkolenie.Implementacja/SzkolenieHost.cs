@@ -20,6 +20,7 @@ namespace Szkolenie.Implementacja
         public override void Configure(Container container)
         {
             container.RegisterAutoWiredAs<Kontrahent, IKontrahent>().ReusedWithin(ReuseScope.Request);
+            container.RegisterAutoWiredAs<Database, IDatabase>().ReusedWithin(ReuseScope.Container);
         }
     }
 }

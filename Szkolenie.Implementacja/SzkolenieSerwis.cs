@@ -1,49 +1,41 @@
 ﻿using ServiceStack;
+using ServiceStack.OrmLite;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using Szkolenie.Api;
 
 namespace Szkolenie.Implementacja
 {
-    [Route("/nazwa/daj")]
-    public class KomendaDajNazwe
+    [Route("/kontrahent/dodaj")]
+    public class KomendaKontrahentDodaj
     {
         public string Nazwa { get; set; }
-    }
-
-    [Route("/nazwa/daj1")]
-    public class KomendaDajNazwe1
-    {
-        public string Id { get; set; }
+        public int Numer { get; set; }
     }
 
     public class SzkolenieSerwis : Service
     {
-        private int nr = 1;
-        private IKontrahent _kontrahent;
+        private static object _blokada = new object();
+        private IDatabase _db;
 
-        public SzkolenieSerwis(IKontrahent kontrahent)
+        public SzkolenieSerwis(IDatabase db)
         {
-            _kontrahent = kontrahent;
+            _db = db;
         }
 
-        public SzkolenieSerwis()
+        public Kontrahent Post(KomendaKontrahentDodaj arg)
         {
-            Console.WriteLine("Utworzono");
-        }
-
-        public string Get(KomendaDajNazwe arg)
-        {
-            _kontrahent.Numer++;
-            //var k = ResolveService<IKontrahent>();
-            //k.Numer++;
-            return $"OK: {arg.Nazwa} {_kontrahent.Numer}";
-        }
-
-        public string Get(KomendaDajNazwe1 arg)
-        {
-            return "OK:" + arg.Id;
+            using (var c = _db.DajPolaczenie())
+            {
+                var id = _db.DajGen("new_generator");
+                c.Save(new Kontrahent() { Id = id, Numer = arg.Numer, Nazwa = arg.Nazwa });
+                var zapytanie = c.From<Kontrahent>().Where(x => x.Id==id);
+                var wynik = c.SqlList<Kontrahent>(zapytanie);
+                return wynik.FirstOrDefault();
+            }
         }
     }
 }
