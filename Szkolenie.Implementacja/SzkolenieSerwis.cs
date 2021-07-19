@@ -25,6 +25,7 @@ namespace Szkolenie.Implementacja
     [Route("/towary/daj")]
     public class KomendaDajTowary
     {
+        public string Filtr { get; set; }
     }
 
     [Route("/towary/zapisz")]
@@ -73,7 +74,9 @@ namespace Szkolenie.Implementacja
 
         public Towar[] Any(KomendaDajTowary arg)
         {
-            return _lista.ToArray();
+            if (String.IsNullOrWhiteSpace(arg.Filtr))
+                arg.Filtr = "";
+            return _lista.Where(x => x.Nazwa.Contains(arg.Filtr)).ToArray();
         }
 
         public Towar Any(KomendaTowaryZapisz arg)

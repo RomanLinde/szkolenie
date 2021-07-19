@@ -9,6 +9,21 @@ interface ITowar {
   nazwa: string
 }
 
+function useDebounce(value: any, delay: any) {
+  const [debouncedValue, setDebouncedValue] = useState(value)
+
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      setDebouncedValue(value)
+    }, delay)
+    return () => {
+      clearTimeout(handler)
+    }
+  }, [value])
+
+  return debouncedValue
+}
+
 const fetchData = (url:string, data:object) => {
   const headers = new Headers();
   headers.set("Content-Type", "application/json;charset=UTF-8");
@@ -34,12 +49,14 @@ function App() {
   const [lista, zmienListe] = useState([] as ITowar[])
   const [nazwaTowaru, zmienNazwaTowaru] = useState("")
   const [idTowaru, zmienIdTowaru] = useState("")
+  const [filtr, ustawFiltr] = useState("")
+  const filtrZmieniono = useDebounce(filtr, 1000)
 
   useEffect(() => {
-    fetchData('towary/daj', {}).then(json => {
+    fetchData('towary/daj', {filtr}).then(json => {
       zmienListe(json)
-    })
-  }, [])
+    })    
+  }, [filtrZmieniono])
 
   const reload = () => {
     zmienListe([])
@@ -69,19 +86,24 @@ function App() {
 
   return (
     <DivApp>
+      <div>
+        <p>Filtr:</p>
+        <input value={filtr} onChange={(e:any)=>ustawFiltr(e.target.value)}/>
+      </div>
       <Select value={idTowaru} onChange={(e:any) => zmienIdTowaru(e.target.value)}>
         {lista.map((x:ITowar) => (<MenuItem key={x.id} value={x.id}>{x.nazwa}</MenuItem>))}
       </Select>
       <Button onClick={usunTowar}>Usuń wybrany</Button>
       <form onSubmit={(e:any)=>zapis(e)}>
-        <TextField type="text" name="nazwa" value={nazwaTowaru} onChange={(e:any)=>zmienNazwaTowaru(e.target.value)}/>
+        <input type="text" name="nazwa" value={nazwaTowaru} onChange={(e:any)=>zmienNazwaTowaru(e.target.value)}/>
         <input type="submit" value="Zapisz"/>
       </form>
       <ButtonP onClick={reload}>
         <div>Dodaj</div>
       </ButtonP>      
+      <p>Filtr: {filtr}</p>
       <p>Nazwa: {nazwaTowaru}</p>
-      <p>Nazwa: {idTowaru}</p>
+      <p>Id: {idTowaru}</p>
     </DivApp>
   );
 }
