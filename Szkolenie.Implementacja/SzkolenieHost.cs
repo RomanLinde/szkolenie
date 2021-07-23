@@ -24,7 +24,7 @@ namespace Szkolenie.Implementacja
             allowedMethods: "GET, POST, PUT, DELETE, OPTIONS",
             allowedHeaders: "Content-Type",
             allowCredentials: true);
-            Plugins.Add(cors);
+            //Plugins.Add(cors);
 
             container.RegisterAutoWiredAs<Kontrahent, IKontrahent>().ReusedWithin(ReuseScope.Request);
             container.RegisterAutoWiredAs<Database, IDatabase>().ReusedWithin(ReuseScope.Container);

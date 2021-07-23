@@ -30,9 +30,9 @@ const fetchData = (url:string, data:object) => {
   headers.set("Accept", "application/json;charset=UTF-8");
   console.log("body:", data)
   const body = JSON.stringify(data);
-  const server = process.env.NODE_ENV === 'production' ? '' : "http://localhost:5000"
+  //const server = process.env.NODE_ENV === 'production' ? '' : "http://localhost:5000"
 
-  const req = fetch(server+url, {
+  const req = fetch(url, {
     method: 'POST',
     headers,
     body

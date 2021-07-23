@@ -3,11 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30711.63
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Szkolenie.Api", "Szkolenie.Api\Szkolenie.Api.csproj", "{FB1AD236-FCD2-493B-97E1-E183DCDF474B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Szkolenie.Api", "Szkolenie.Api\Szkolenie.Api.csproj", "{FB1AD236-FCD2-493B-97E1-E183DCDF474B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Szkolenie.Implementacja", "Szkolenie.Implementacja\Szkolenie.Implementacja.csproj", "{36854A9F-B1DF-4927-A22F-61505320C62D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Szkolenie.Implementacja", "Szkolenie.Implementacja\Szkolenie.Implementacja.csproj", "{36854A9F-B1DF-4927-A22F-61505320C62D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Szkolenie.Web", "Szkolenie.Web\Szkolenie.Web.csproj", "{DCE93D4D-BA0A-4153-8416-BDCC2B32D7DB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Szkolenie.Web", "Szkolenie.Web\Szkolenie.Web.csproj", "{DCE93D4D-BA0A-4153-8416-BDCC2B32D7DB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Szkolenie.Testy", "Szkolenie.Testy\Szkolenie.Testy.csproj", "{B213D26C-B695-4334-B890-C0E8B454579E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{DCE93D4D-BA0A-4153-8416-BDCC2B32D7DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DCE93D4D-BA0A-4153-8416-BDCC2B32D7DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DCE93D4D-BA0A-4153-8416-BDCC2B32D7DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B213D26C-B695-4334-B890-C0E8B454579E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B213D26C-B695-4334-B890-C0E8B454579E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B213D26C-B695-4334-B890-C0E8B454579E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B213D26C-B695-4334-B890-C0E8B454579E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
